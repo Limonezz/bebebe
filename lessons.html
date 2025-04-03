@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Уроки | Мой курс</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <div class="app">
+        <!-- Шапка -->
+        <header class="header">
+            <button onclick="goBack()">← Назад</button>
+            <h1>Уроки</h1>
+        </header>
+
+        <!-- Основной контент -->
+        <main class="content">
+            <div class="lesson-list">
+                <div class="lesson-card" onclick="openLesson(1)">
+                    <h3>Урок 1: Введение</h3>
+                    <p>Основные понятия курса</p>
+                    <span class="progress">🔴 Не начато</span>
+                </div>
+                
+                <div class="lesson-card" onclick="openLesson(2)">
+                    <h3>Урок 2: Практика</h3>
+                    <p>Первые шаги в разработке</p>
+                    <span class="progress">🟢 Пройдено</span>
+                </div>
+            </div>
+        </main>
+
+        <!-- Нижнее меню -->
+        <nav class="tab-bar">
+            <a href="index.html">Главная</a>
+            <a href="lessons.html" class="active">Уроки</a>
+            <a href="profile.html">Профиль</a>
+        </nav>
+    </div>
+
+    <script>
+        // Инициализация Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.expand();
+        
+        function goBack() {
+            window.location.href = "index.html";
+        }
+        
+        function openLesson(id) {
+            tg.showPopup({
+                title: `Урок ${id}`,
+                message: 'Содержание урока загружается...',
+                buttons: [{ id: 'close', type: 'close' }]
+            });
+        }
+    </script>
+</body>
+</html>
