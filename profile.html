@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль | Мой курс</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <div class="app">
+        <!-- Шапка -->
+        <header class="header">
+            <button onclick="goBack()">← Назад</button>
+            <h1>Профиль</h1>
+        </header>
+
+        <!-- Основной контент -->
+        <main class="content">
+            <div class="profile-info">
+                <img src="https://via.placeholder.com/100" alt="Аватар" class="avatar">
+                <h2 id="user-name">Гость</h2>
+                <p>Прогресс: <span class="progress">25%</span></p>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <span>🎯</span>
+                        <p>Пройдено уроков: 2/10</p>
+                    </div>
+                    <div class="stat-item">
+                        <span>⏱️</span>
+                        <p>Время обучения: 3 ч 45 мин</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Нижнее меню -->
+        <nav class="tab-bar">
+            <a href="index.html">Главная</a>
+            <a href="lessons.html">Уроки</a>
+            <a href="profile.html" class="active">Профиль</a>
+        </nav>
+    </div>
+
+    <script>
+        // Инициализация Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.expand();
+        
+        // Получаем данные пользователя
+        document.addEventListener('DOMContentLoaded', () => {
+            if (tg.initDataUnsafe.user) {
+                const user = tg.initDataUnsafe.user;
+                document.getElementById('user-name').textContent = 
+                    `${user.first_name || ''} ${user.last_name || ''}`.trim() || 'Пользователь';
+            }
+        });
+        
+        function goBack() {
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>
